@@ -1,0 +1,145 @@
+#root {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+.loginHeader{
+  color: #0bbec8;
+}
+
+.btnLogin{
+  background-color: #1de4f0;
+}
+
+.btnLogin:hover{
+  background-color:#0bbec8;
+}
+
+/* Make progress bar stick to top of page */
+.progress-bar {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin: 0 auto;         /* Center horizontally */
+  padding: 40px 60px;     /* Space on left & right */
+  box-sizing: border-box;
+}
+
+/* Line behind steps */
+.progress-bar::before {
+  content: '';
+  position: absolute;
+  top: 45%;
+  left: 60px;             /* Align with left padding */
+  right: 60px;            /* Align with right padding */
+  height: 10px;
+  background-color: #e0e0e0;
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+/* Each step */
+.step {
+  position: relative;
+  text-align: center;
+  z-index: 2;
+  flex: 1;
+}
+
+/* Circle styling */
+.step .circle {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto;
+  border-radius: 50%;
+  background: lightgray;
+  line-height: 60px;
+  font-size: 14px;
+  color: white;
+  font-weight: bold;
+  z-index: 3;
+}
+
+/* Active step */
+.step.active .circle {
+  background: #00c2ff;
+}
+
+/* Step label */
+.step .label {
+  margin-top: 8px;
+  font-size: 12px;
+  color: #666;
+}
+
+.upload-container {
+  border: 2px dashed #ccc;
+  padding: 20px;
+  text-align: center;
+  color: #333;
+  cursor: pointer;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  transition: background 0.3s ease;
+  margin-top: 10px;
+  margin-left: 20px;
+  width: 250px;
+}
+
+.upload-container:hover {
+  background-color: #eaf6ff;
+}
+
+.file-input {
+  display: none;
+}
+
+.upload-container p {
+  margin: 0;
+}
+
+.upload-container ul {
+  margin-top: 10px;
+  padding-left: 20px;
+  text-align: left;
+}
