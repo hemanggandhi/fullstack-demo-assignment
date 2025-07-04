@@ -1,4 +1,3 @@
-// backend/server.js
 require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
@@ -7,18 +6,13 @@ const cors = require("cors");
 const authRoutes = require("./routes/auth");
 const clientRoutes = require("./routes/clientRoutes");
 const reportTypes = require("./routes/reportTypes");
-console.log(
-  "reportTypes routes loaded:",
-  reportTypes.stack?.length || typeof reportTypes
-);
-
-// ... other imports
+console.log("🔍 MONGO_URI from .env:", process.env.MONGO_URI);
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Connect to Mongo
+// Connection to MongoDB
 mongoose
   .connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
@@ -34,7 +28,7 @@ app.get("/test", (req, res) => {
 // Mount auth routes
 app.use("/api/auth", authRoutes);
 
-// ... mount other routes (clients, report-types, form-intake, etc.)
+// ... mount other routes
 app.use("/api/clients", clientRoutes);
 app.use("/api/reportTypes", reportTypes);
 

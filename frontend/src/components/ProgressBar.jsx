@@ -1,4 +1,3 @@
-// ProgressBar.jsx
 const ProgressBar = ({ step }) => {
   const steps = [
     "Order Information",

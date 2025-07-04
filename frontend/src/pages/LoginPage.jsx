@@ -41,7 +41,6 @@ export default function LoginPage() {
           <div className="text-sm text-red-600 mb-4 text-center">{error}</div>
         )}
 
-        {/* Username Field */}
         <div className="mb-4 flex items-center">
           <label className="w-24 text-gray-700">Username</label>
           <input
@@ -53,7 +52,6 @@ export default function LoginPage() {
           />
         </div>
 
-        {/* Password Field */}
         <div className="mb-6 flex items-center">
           <label className="w-24 text-gray-700">Password</label>
           <input
@@ -65,7 +63,6 @@ export default function LoginPage() {
           />
         </div>
 
-        {/* Submit Button */}
         <button
           type="submit"
           className="btnLogin w-full py-2 rounded bg-primary text-black hover:bg-accent transition-colors"

@@ -4,14 +4,10 @@ import { useNavigate } from "react-router-dom";
 const Navbar = () => {
   const navigate = useNavigate();
 
-  // Get the username from localStorage
   const username = localStorage.getItem("username");
 
   const handleLogout = () => {
-    // Clear localStorage
     localStorage.clear();
-
-    // Redirect to login page
     navigate("/login");
   };
 
@@ -25,7 +21,6 @@ const Navbar = () => {
   );
 };
 
-// Inline styles
 const styles = {
   navbar: {
     display: "flex",

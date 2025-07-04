@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const ReportTypes = require("../models/ReportTypes"); // correct relative path
+const ReportTypes = require("../models/Report_types");
 
 router.get("/", async (req, res) => {
   try {

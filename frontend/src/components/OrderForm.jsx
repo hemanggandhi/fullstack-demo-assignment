@@ -1,4 +1,3 @@
-// OrderForm.jsx
 import { useState } from "react";
 import OrderInformation from "./steps/OrderInformation";
 import PropertyInformation from "./steps/PropertyInformation";

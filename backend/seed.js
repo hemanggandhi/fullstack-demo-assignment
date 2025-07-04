@@ -2,9 +2,9 @@ require("dotenv").config();
 console.log("MONGODB_URI:", process.env.MONGODB_URI);
 
 const mongoose = require("mongoose");
-const Client = require("./models/Client");
-const ReportType = require("./models/ReportType");
-const User = require("./models/User");
+const Client = require("./models/clients");
+const Report_Type = require("./models/report_types");
+const Users = require("./models/users");
 const bcrypt = require("bcrypt");
 
 const MONGODB_URI = process.env.MONGODB_URI;
@@ -12,12 +12,10 @@ const MONGODB_URI = process.env.MONGODB_URI;
 async function seed() {
   await mongoose.connect(MONGODB_URI);
 
-  // 1. Clear existing lookup data
   await Client.deleteMany({});
-  await ReportType.deleteMany({});
-  await User.deleteMany({});
+  await Report_Type.deleteMany({});
+  await Users.deleteMany({});
 
-  // 2. Seed clients
   await Client.insertMany([
     { name: "Anhas Web" },
     { name: "Test Client" },
@@ -29,15 +27,13 @@ async function seed() {
     { name: "Dublin Estates" },
   ]);
 
-  // 3. Seed report types
-  await ReportType.insertMany([
+  await Report_Type.insertMany([
     { name: "AIVM" },
     { name: "Property Valuation" },
   ]);
 
-  // 4. Create admin user
   const passwordHash = await bcrypt.hash("Ahmd5698#", 10);
-  await User.create({
+  await Users.create({
     username: "anhasadmin",
     passwordHash,
   });

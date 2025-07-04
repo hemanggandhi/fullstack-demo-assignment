@@ -3,7 +3,6 @@ import React from "react";
 function ProperTypes() {
   return (
     <>
-      {/* Top-left label */}
       <div className="pl-5 text-left">
         <label className="font-semibold">
           Property Upload Type
