@@ -19,6 +19,9 @@ const OrderRecipients = ({ next, back }) => {
     const numberRegex = /^\d+$/;
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+    if (!contactName.trim() && !contactNumber.trim() && !contactEmail.trim())
+      return "Contact Name, Number and Email are required.";
+
     if (!contactName.trim()) return "Contact Name is required.";
     if (!nameRegex.test(contactName.trim()))
       return "Contact Name must contain only letters and spaces.";

@@ -22,13 +22,30 @@ const PropertyInformation = ({ next, back }) => {
     }
 
     if (!specs.aboveGradeSqft.trim()) return "Above Grade Sqft is required.";
+    if (!/^\d+$/.test(specs.aboveGradeSqft.trim()))
+      return "Above Grade Sqft must be a number.";
+
     if (specs.hasBasement === null)
       return "Please select if there is a basement.";
+
     if (!specs.bedrooms.trim()) return "Bedrooms field is required.";
+    if (!/^\d+$/.test(specs.bedrooms.trim()))
+      return "Bedrooms must be a number.";
+
     if (!specs.bathrooms.trim()) return "Bathrooms field is required.";
+    if (!/^\d+$/.test(specs.bathrooms.trim()))
+      return "Bathrooms must be a number.";
+
     if (!specs.yearBuilt.trim()) return "Year Built field is required.";
+    if (!/^\d+$/.test(specs.yearBuilt.trim()))
+      return "Year Built must be a number.";
+
     if (!specs.stories.trim()) return "Stories field is required.";
+    if (!/^\d+$/.test(specs.stories.trim())) return "Stories must be a number.";
+
     if (!specs.lotSize.trim()) return "Lot Size field is required.";
+    if (!/^\d+$/.test(specs.lotSize.trim()))
+      return "Lot Size must be a number.";
 
     return "";
   };
