@@ -1,9 +1,48 @@
-import React from "react";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import FileUpload from "../FileUpload";
 import PropertySpecs from "../PropertySpecs";
 import ProperTypes from "../ProperTypes";
 
 const PropertyInformation = ({ next, back }) => {
+  const [error, setError] = useState("");
+  const { uploadType, address, propertyType, specs } = useSelector(
+    (state) => state.propertyInfo
+  );
+
+  const validateFields = () => {
+    if (!uploadType || (uploadType !== "Single" && uploadType !== "Batch")) {
+      return "Please select an upload type.";
+    }
+    if (!address.trim()) {
+      return "Address is required.";
+    }
+    if (!propertyType) {
+      return "Please select a property type.";
+    }
+
+    if (!specs.aboveGradeSqft.trim()) return "Above Grade Sqft is required.";
+    if (specs.hasBasement === null)
+      return "Please select if there is a basement.";
+    if (!specs.bedrooms.trim()) return "Bedrooms field is required.";
+    if (!specs.bathrooms.trim()) return "Bathrooms field is required.";
+    if (!specs.yearBuilt.trim()) return "Year Built field is required.";
+    if (!specs.stories.trim()) return "Stories field is required.";
+    if (!specs.lotSize.trim()) return "Lot Size field is required.";
+
+    return "";
+  };
+
+  const handleContinue = () => {
+    const errorMessage = validateFields();
+    if (errorMessage) {
+      setError(errorMessage);
+      return;
+    }
+    setError("");
+    next();
+  };
+
   return (
     <div className="flex flex-wrap justify-between gap-6 px-6">
       {/* Section 1 */}
@@ -11,12 +50,12 @@ const PropertyInformation = ({ next, back }) => {
         <ProperTypes />
       </div>
 
-      {/* SECTION 2 - New */}
+      {/* SECTION 2 */}
       <div className="min-h-[350px] relative pt-4 w-full lg:w-[42%] border border-gray-200 rounded-md shadow-sm bg-white">
         <PropertySpecs />
       </div>
 
-      {/* SECTION 3 - New */}
+      {/* SECTION 3 */}
       <div className="min-h-[350px] relative pt-4 w-full lg:w-[22%] border border-gray-200 rounded-md shadow-sm bg-white">
         <div className="pl-5 text-left">&nbsp;</div>
         <div className="pl-5 text-left mt-1">&nbsp;</div>
@@ -31,27 +70,33 @@ const PropertyInformation = ({ next, back }) => {
           <FileUpload />
         </div>
       </div>
-      {/* Divider */}
-      <div className="mt-[30px] mb-[10px]">
+
+      {error && (
+        <div className="text-red-600 font-semibold w-full px-5 mb-2">
+          {error}
+        </div>
+      )}
+
+      <div className="mt-[30px] mb-[10px] w-full">
         <hr className="border-gray-300" />
       </div>
 
-      {/* Buttons */}
-      <div className="mb-[10px] text-right pr-5">
+      <div className="mb-[10px] text-right pr-5 w-full">
         <button
-          className="bg-skycustom text-white py-2 px-4 rounded"
-          onClick={next}
-        >
-          Continue
-        </button>
-        <button
-          className="bg-skycustom text-white py-2 px-4 ml-4 rounded"
+          className="bg-skycustom text-white py-2 px-4 mr-4 rounded"
           onClick={back}
         >
           Back
+        </button>
+        <button
+          className="bg-skycustom text-white py-2 px-4 rounded"
+          onClick={handleContinue}
+        >
+          Continue
         </button>
       </div>
     </div>
   );
 };
+
 export default PropertyInformation;

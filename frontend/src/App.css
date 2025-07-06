@@ -112,6 +112,7 @@
   color: #666;
 }
 
+/* File Upload CSS classes */
 .upload-container {
   border: 2px dashed #ccc;
   padding: 20px;
@@ -143,3 +144,5 @@
   padding-left: 20px;
   text-align: left;
 }
+
+/* ------ */
