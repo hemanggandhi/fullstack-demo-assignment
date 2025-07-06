@@ -5,6 +5,7 @@ const OrderReview = ({ next, back }) => {
   const order = useSelector((state) => state.order);
   const orderRecipients = useSelector((state) => state.orderRecipients);
   const propertyInfo = useSelector((state) => state.propertyInfo);
+  const excelData = useSelector((state) => state.excel.data);
 
   return (
     <div className="flex flex-wrap justify-between gap-6 px-6">
@@ -107,7 +108,8 @@ const OrderReview = ({ next, back }) => {
       </div>
 
       <div className="min-h-[350px] relative pt-4 w-full lg:w-[29%] border border-gray-200 rounded-md shadow-sm bg-white">
-        <p className="font-semibold">File Uploaded Line Items</p>
+        <p className="font-semibold px-3">File Uploaded Line Items</p>
+
         <div className="mt-1 space-y-2 px-3">
           <div className="flex justify-between">
             <label className="font-semibold">Description of Work</label>
@@ -116,8 +118,19 @@ const OrderReview = ({ next, back }) => {
           <div>
             <hr className="border-gray-300" />
           </div>
+
+          {/* Render line items */}
+          <div className="space-y-1">
+            {excelData.map((item, index) => (
+              <div key={index} className="flex justify-between text-sm">
+                <span>{item["DESCRIPTION OF WORK"]}</span>
+                <span>${Number(item[" BUDGET "]).toLocaleString()}</span>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
+
       <div className="flex justify-between items-center bottom-4 w-full">
         <button
           className="bg-skycustom text-white py-2 px-4 rounded"
