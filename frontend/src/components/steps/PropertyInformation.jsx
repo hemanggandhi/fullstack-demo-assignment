@@ -9,6 +9,7 @@ const PropertyInformation = ({ next, back }) => {
   const { uploadType, address, propertyType, specs } = useSelector(
     (state) => state.propertyInfo
   );
+  const [uploadedFiles, setUploadedFiles] = useState([]);
 
   const validateFields = () => {
     if (!uploadType || (uploadType !== "Single" && uploadType !== "Batch")) {
@@ -47,6 +48,10 @@ const PropertyInformation = ({ next, back }) => {
     if (!/^\d+$/.test(specs.lotSize.trim()))
       return "Lot Size must be a number.";
 
+    if (!uploadedFiles || uploadedFiles.length === 0) {
+      return "Please upload at least one .xlsx file.";
+    }
+
     return "";
   };
 
@@ -84,7 +89,7 @@ const PropertyInformation = ({ next, back }) => {
           </div>
         </div>
         <div>
-          <FileUpload />
+          <FileUpload onFileUploadChange={setUploadedFiles} />
         </div>
       </div>
 

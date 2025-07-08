@@ -3,7 +3,7 @@ import * as XLSX from "xlsx";
 import { useDispatch } from "react-redux";
 import { setExcelData } from "../store/features/excelSlice";
 
-const FileUpload = () => {
+const FileUpload = ({ onFileUploadChange }) => {
   const [files, setFiles] = useState([]);
   const [error, setError] = useState("");
   const dispatch = useDispatch();
@@ -44,8 +44,13 @@ const FileUpload = () => {
       return;
     }
 
-    setFiles((prev) => [...prev, ...validFiles]);
-    setError(""); // Clear previous error
+    //setFiles((prev) => [...prev, ...validFiles]);
+    setFiles((prev) => {
+      const updatedFiles = [...prev, ...validFiles];
+      onFileUploadChange(updatedFiles);
+      return updatedFiles;
+    });
+    setError("");
 
     // Read content from the valid file
     readExcel(validFiles[0]);
@@ -73,7 +78,12 @@ const FileUpload = () => {
       return;
     }
 
-    setFiles((prev) => [...prev, ...validFiles]);
+    //setFiles((prev) => [...prev, ...validFiles]);
+    setFiles((prev) => {
+      const updatedFiles = [...prev, ...validFiles];
+      onFileUploadChange(updatedFiles);
+      return updatedFiles;
+    });
     setError(""); // Clear previous error
 
     readExcel(validFiles[0]);

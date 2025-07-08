@@ -5,7 +5,7 @@ import OrderRecipients from "./steps/OrderRecipients";
 import OrderReview from "./steps/OrderReview";
 import ProgressBar from "./ProgressBar";
 
-const OrderForm = () => {
+const OrderForm = ({ setOrderId, setSubmitted, submitted }) => {
   const [step, setStep] = useState(1);
 
   const nextStep = () => setStep((prev) => prev + 1);
@@ -20,7 +20,14 @@ const OrderForm = () => {
       case 3:
         return <OrderRecipients next={nextStep} back={prevStep} />;
       case 4:
-        return <OrderReview back={prevStep} />;
+        return (
+          <OrderReview
+            back={prevStep}
+            setOrderId={setOrderId}
+            setSubmitted={setSubmitted}
+            submitted={submitted}
+          />
+        );
       default:
         return <OrderInformation next={nextStep} />;
     }
